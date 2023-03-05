@@ -3,12 +3,16 @@ const init = () => {
   inputForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const input = document.querySelector('input#searchByID');
-    console.log(input.value);
+    // console.log(input.value)
 
-    fetch ("http://localhost:3000/movies")
+    fetch (`http://localhost:3000/movies/${input.value}`)
     .then (resp => resp.json())
     .then (data => {
-        console.log(data);
+        const title = document.querySelector('#movieDetails h4');
+        const summary = document.querySelector('#movieDetails p');
+        // console.log(data);
+        title.innerText = data.title;
+        summary.innerText = data.summary;
     });
   });
 };
